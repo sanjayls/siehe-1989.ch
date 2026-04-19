@@ -1,6 +1,6 @@
 // Season data for Siehe 1989
 // NLA 1988/89 — FC Luzern's only championship
-// Corrected version: verified name, role, and timeline fixes applied
+// Corrected version: 1.1
 
 const QP_STANDINGS = [
   { r:1,  club:'FC Luzern',               p:22, w:10, d:8,  l:4,  gf:27, ga:25, pts:28, champion:true },
