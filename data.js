@@ -328,7 +328,7 @@ const SCORERS = [
   { r:2,  name:'Türkyilmaz Kubilay',     qp:13, fg:6,  tot:19, club:'AC Bellinzona' },
   { r:2,  name:'Zuffi Dario',            qp:12, fg:7,  tot:19, club:'BSC Young Boys' },
   { r:4,  name:'Rufer Wynton (NZL)',     qp:12, fg:6,  tot:18, club:'Grasshopper Club' },
-  { r:5,  name:'Kücle Peter (GER)',      qp:8,  fg:9,  tot:17, club:'BSC Young Boys' },
+  { r:5,  name:'Közle Peter (GER)',      qp:8,  fg:9,  tot:17, club:'BSC Young Boys' },
   { r:6,  name:'Nadig Peter',            qp:6,  fg:9,  tot:15, club:'FC Luzern', luzern:true },
   { r:7,  name:'Lüthi Robert',           qp:9,  fg:5,  tot:14, club:'Neuchâtel Xamax' },
   { r:8,  name:'Baljic Mirsad (YUG)',    qp:6,  fg:7,  tot:13, club:'FC Sion' },
