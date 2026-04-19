@@ -60,7 +60,7 @@ Servette 2-2  2-2  1-1  0-0  0-2  3-2  4-2  ···`;
 const MATCHES_QP = [
   { r:'1. RUNDE', d:'23. Juli', m:[
     { h:'Lausanne',  s:'0-2', a:'Aarau',       g:'Kilian 16, Knup 64' },
-    { h:'Lugano',    s:'1-1', a:'Young Boys',  g:'Penzavalli 39; Kücle 61' },
+    { h:'Lugano',    s:'1-1', a:'Young Boys',  g:'Penzavalli 39; Közle 61' },
     { h:'Luzern',    s:'3-2', a:'St.Gallen',   g:'Gretarsson 61, Burri 63, Mohr 70; Braschler 53, Piserchia 90', luzern:true },
     { h:'Xamax',     s:'2-2', a:'Bellinzona',  g:'Lei-Ravello 14p, Decastel 91; og 36, Mapuata 61' },
     { h:'Servette',  s:'0-1', a:'Sion',        g:'Cina 68p' },
@@ -72,7 +72,7 @@ const MATCHES_QP = [
     { h:'Grasshopper', s:'3-0', a:'Lugano',      g:'Rufer 55, 89, Bickel 68' },
     { h:'St.Gallen',   s:'1-2', a:'Lausanne',    g:'Metzler 59; Chapuisat 17, Bregy 55' },
     { h:'Sion',        s:'1-1', a:'Xamax',       g:'Cina 18; Zwicker 63' },
-    { h:'Young Boys',  s:'1-2', a:'Wettingen',   g:'Kücle 53; Baumgartner 25, Remark 41' },
+    { h:'Young Boys',  s:'1-2', a:'Wettingen',   g:'Közle 53; Baumgartner 25, Remark 41' },
   ]},
   { r:'3. RUNDE', d:'30. Juli', m:[
     { h:'Lausanne',  s:'1-1', a:'Sion',        g:'Thychosen 19; Cina 39' },
@@ -174,7 +174,7 @@ const MATCHES_QP = [
     { h:'Xamax',      s:'1-1', a:'Aarau',        g:'Smajic 83p; Knup 35' },
     { h:'Lausanne',   s:'2-2', a:'Bellinzona',   g:'Bregy 55p, Schürmann 64; Türkyilmaz 29, Tami 51' },
     { h:'Wettingen',  s:'1-1', a:'Sion',         g:'Kundert 62; Piffaretti 12' },
-    { h:'Luzern',     s:'1-3', a:'Young Boys',   g:'M.Müller 90; Maissen 45, Zuffi 60, Kücle 74', luzern:true },
+    { h:'Luzern',     s:'1-3', a:'Young Boys',   g:'M.Müller 90; Maissen 45, Zuffi 60, Közle 74', luzern:true },
     { h:'Servette',   s:'2-1', a:'Grasshopper',  g:'Sinval 49, Rummenigge 62; Koller 57' },
     { h:'Lugano',     s:'3-1', a:'St.Gallen',    g:'Gorter 37, Manfreda 66, Pelosi 91; Irizik 88' },
   ]},
@@ -188,7 +188,7 @@ const MATCHES_QP = [
   ]},
   { r:'17. RUNDE', d:'29.–30. Okt.', m:[
     { h:'Xamax',      s:'4-0', a:'Grasshopper',  g:'H.Hermann 27, Decastel 28, Lüthi 56, Chassot 81' },
-    { h:'Lausanne',   s:'1-4', a:'Young Boys',   g:'Hottiger 85; Kücle 13, Hänzi 30, Nilsson 54, Zuffi 83' },
+    { h:'Lausanne',   s:'1-4', a:'Young Boys',   g:'Hottiger 85; Közle 13, Hänzi 30, Nilsson 54, Zuffi 83' },
     { h:'Servette',   s:'1-0', a:'Aarau',        g:'Rummenigge 89' },
     { h:'Luzern',     s:'2-1', a:'Bellinzona',   g:'Nadig 31, 58; Türkyilmaz 81', luzern:true },
     { h:'Wettingen',  s:'0-0', a:'St.Gallen',    g:'' },
@@ -211,7 +211,7 @@ const MATCHES_QP = [
     { h:'Bellinzona',  s:'3-0', a:'Young Boys',  g:'Jacobacci 16, Marchand 73, Türkyilmaz 75' },
   ]},
   { r:'20. RUNDE', d:'27. Nov.', m:[
-    { h:'Young Boys',  s:'4-0', a:'Aarau',       g:'Kücle 6, 30, 85, Zuffi 13p' },
+    { h:'Young Boys',  s:'4-0', a:'Aarau',       g:'Közle 6, 30, 85, Zuffi 13p' },
     { h:'Grasshopper', s:'2-2', a:'Bellinzona',  g:'Bickel 30, P.Cesar 63p; Türkyilmaz 74, 76p' },
     { h:'Lugano',      s:'0-2', a:'Lausanne',    g:'Antognoni 39, Hartmann 91' },
     { h:'Servette',    s:'0-1', a:'Luzern',      g:'Wehrli 24p', luzern:true },
@@ -220,7 +220,7 @@ const MATCHES_QP = [
   ]},
   { r:'21. RUNDE', d:'4. Dez.', m:[
     { h:'St.Gallen',   s:'2-0', a:'Bellinzona',  g:'Piserchia 62, Rietmann 65' },
-    { h:'Young Boys',  s:'4-3', a:'Grasshopper', g:'Fimian 4, R.Sutter 10, Jeitziner 23, Kücle 36; Andermatt 53, 75, 90' },
+    { h:'Young Boys',  s:'4-3', a:'Grasshopper', g:'Fimian 4, R.Sutter 10, Jeitziner 23, Közle 36; Andermatt 53, 75, 90' },
     { h:'Lausanne',    s:'2-4', a:'Xamax',       g:'Herr 3, Hartmann 15; Lüthi 16, 34, Thévenaz 65, Chassot 89' },
     { h:'Lugano',      s:'1-6', a:'Servette',    g:'Leva 76; Cacciapaglia 8, Rummenigge 15, 22, 59, Eriksen 18, Favre 60' },
     { h:'Aarau',       s:'4-1', a:'Sion',        g:'T.Wyss 7, 52, Kilian 19, Triebold 89; Pascolo 84p' },
@@ -241,7 +241,7 @@ const MATCHES_FG = [
     { h:'Wettingen',   s:'2-0', a:'Grasshopper', g:'Romano 36, Häusermann 79' },
     { h:'Bellinzona',  s:'0-0', a:'Xamax',       g:'' },
     { h:'Sion',        s:'3-2', a:'Servette',    g:'Baljic 23p, 55, Balet 50; Favre 47, Eriksen 80' },
-    { h:'Young Boys',  s:'1-2', a:'Luzern',      g:'Kücle 12; Schönenberger 51, Birrer 76', luzern:true },
+    { h:'Young Boys',  s:'1-2', a:'Luzern',      g:'Közle 12; Schönenberger 51, Birrer 76', luzern:true },
   ]},
   { r:'2. RUNDE', d:'25.–27. März', m:[
     { h:'Xamax',       s:'2-2', a:'Sion',        g:'H.Hermann 6, Lüthi 29; Brigger 34, O.Rey 89' },
@@ -277,18 +277,18 @@ const MATCHES_FG = [
     { h:'Bellinzona',  s:'2-5', a:'Servette',    g:'Mapuata 66, Türkyilmaz 84p; og 10, Eriksen 21, 87, Rummenigge 26, 57' },
     { h:'Grasshopper', s:'2-1', a:'Sion',        g:'Gren 53, A.Sutter 72; Cina 13' },
     { h:'Luzern',      s:'1-0', a:'Wettingen',   g:'Gretarsson 55', luzern:true },
-    { h:'Young Boys',  s:'5-1', a:'Xamax',       g:'Kücle 14, 30, Fimian 48, Baumann 58, Rölli 62; B.Sutter 31' },
+    { h:'Young Boys',  s:'5-1', a:'Xamax',       g:'Közle 14, 30, Fimian 48, Baumann 58, Rölli 62; B.Sutter 31' },
   ]},
   { r:'8. RUNDE', d:'11. Mai', m:[
     { h:'Xamax',       s:'3-0', a:'Bellinzona',  g:'Ryf 18, B.Sutter 23, Lüthi 53' },
     { h:'Servette',    s:'1-1', a:'Sion',        g:'Eriksen 29; Sauthier 82' },
     { h:'Grasshopper', s:'2-1', a:'Wettingen',   g:'Gren 4, P.Cesar 58p; Schepull 76' },
-    { h:'Luzern',      s:'3-3', a:'Young Boys',  g:'Nadig 34, 85, Wehrli 79p; Kücle 43, Rapolder 64, Zuffi 74', luzern:true },
+    { h:'Luzern',      s:'3-3', a:'Young Boys',  g:'Nadig 34, 85, Wehrli 79p; Közle 43, Rapolder 64, Zuffi 74', luzern:true },
   ]},
   { r:'9. RUNDE', d:'20. Mai', m:[
     { h:'Sion',        s:'2-2', a:'Xamax',       g:'Brigger 43, Baljic 88p; Lei-Ravello 10, B.Sutter 72' },
     { h:'Wettingen',   s:'6-2', a:'Servette',    g:'Rueda 15p, 85, Svensson 21, Germann 63, Baumgartner 75, Bertelsen 90; Besnard 18, Rummenigge 79' },
-    { h:'Young Boys',  s:'2-0', a:'Grasshopper', g:'R.Müller 48p, Kücle 75' },
+    { h:'Young Boys',  s:'2-0', a:'Grasshopper', g:'R.Müller 48p, Közle 75' },
     { h:'Bellinzona',  s:'0-0', a:'Luzern',      g:'', luzern:true },
   ]},
   { r:'10. RUNDE', d:'23. Mai', m:[
@@ -306,20 +306,20 @@ const MATCHES_FG = [
   { r:'12. RUNDE', d:'31. Mai', m:[
     { h:'Bellinzona',  s:'1-0', a:'Sion',        g:'Türkyilmaz 47' },
     { h:'Xamax',       s:'0-1', a:'Luzern',      g:'Nadig 79', luzern:true },
-    { h:'Wettingen',   s:'3-1', a:'Young Boys',  g:'Rueda 28p, Bertelsen 53, 90; Kücle 83' },
+    { h:'Wettingen',   s:'3-1', a:'Young Boys',  g:'Rueda 28p, Bertelsen 53, 90; Közle 83' },
     { h:'Grasshopper', s:'6-1', a:'Servette',    g:'Halter 3, 53, 75, W.Rufer 33, 84, Stiel 71; Eriksen 13' },
   ]},
   { r:'13. RUNDE', d:'10. Juni', m:[
     { h:'Grasshopper', s:'2-1', a:'Xamax',       g:'W.Rufer 39, Stiel 75; og 89' },
     { h:'Luzern',      s:'1-0', a:'Servette',    g:'Mohr 61', luzern:true },
-    { h:'Young Boys',  s:'2-2', a:'Sion',        g:'Kücle 51, 53; Piffaretti 18, Baljic 50' },
+    { h:'Young Boys',  s:'2-2', a:'Sion',        g:'Közle 51, 53; Piffaretti 18, Baljic 50' },
     { h:'Bellinzona',  s:'0-1', a:'Wettingen',   g:'Schepull 55' },
   ]},
   { r:'14. RUNDE', d:'14. Juni', m:[
     { h:'Servette',    s:'4-2', a:'Bellinzona',  g:'Rummenigge 25, Favre 71, Hertig 77, Sinval 78; U.Meier 79, Türkyilmaz 80' },
     { h:'Sion',        s:'2-0', a:'Grasshopper', g:'Cina 32, Baljic 68' },
     { h:'Wettingen',   s:'1-0', a:'Luzern',      g:'Kundert 85', luzern:true },
-    { h:'Xamax',       s:'3-2', a:'Young Boys',  g:'Lüthi 2, Chassot 13, Widmer 74; Zuffi 4, Kücle 17' },
+    { h:'Xamax',       s:'3-2', a:'Young Boys',  g:'Lüthi 2, Chassot 13, Widmer 74; Zuffi 4, Közle 17' },
   ]},
 ];
 
@@ -349,7 +349,7 @@ const SCORERS = [
 
 const SCORERS_FG = [
   { r:1, name:'Nadig Peter',            tot:9, club:'FC Luzern', luzern:true },
-  { r:1, name:'Kücle Peter (GER)',      tot:9, club:'BSC Young Boys' },
+  { r:1, name:'Közle Peter (GER)',      tot:9, club:'BSC Young Boys' },
   { r:3, name:'Baljic Mirsad (YUG)',    tot:7, club:'FC Sion' },
   { r:3, name:'Eriksen John (DEN)',      tot:7, club:'Servette Genève' },
   { r:3, name:'Sutter Beat',            tot:7, club:'Neuchâtel Xamax' },
@@ -507,7 +507,7 @@ const MATCH_DETAILS = {
     date:'18.03.1989', venue:'WANKDORF, BERN', attendance:'18 500', ref:'KURT RÖTHLISBERGER (SUHR)',
     home:'BSC YOUNG BOYS', away:'FC LUZERN',
     timeline:[
-      { m:'12', team:'h', ev:'⚽', p:'Kücle' },
+      { m:'12', team:'h', ev:'⚽', p:'Közle' },
       { m:'51', team:'a', ev:'⚽', p:'Schönenberger' },
       { m:'76', team:'a', ev:'⚽', p:'Birrer', note:'Weitschuss aus 22 m' },
     ],
