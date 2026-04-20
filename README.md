@@ -1,7 +1,5 @@
-# siehe-1989.ch
+# siehe-1989.ch              FREISTOSS LUZERN                   Allmend Totomad             BETA
 
-
-# Siehe 1989
 
 A teletext-inspired historical web prototype about **FC Luzern’s 1988/89 championship season**.
 
