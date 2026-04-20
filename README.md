@@ -1,34 +1,24 @@
 # Siehe 1989
 
-A teletext-inspired historical web prototype documenting **FC Luzern's 1988/89 championship season** — the club's only Nationalliga A title.
+## Editorial Note
+
+This repository is an early static presentation layer for historical football data related to the 1988/89 season and FC Luzern’s championship year.
+
+It should not yet be read as a fully source-critical or methodologically complete historical reference work. At its current stage, the project foregrounds visual representation and structured access, not full evidentiary traceability.
+
+The present version does not yet include:
+
+- record-level source citations
+- explicit provenance chains
+- notes on data completeness, uncertainty, or contradiction
+- version-controlled historical corrections
+
+If developed further, the project could evolve into a verifiable historical reference layer with transparent sourcing, documented uncertainty, and revision-aware editorial control.
 
 ## Status
 
-This project is a beta frontend prototype developed within the broader **Freistoss Luzern** initiative. It currently serves testing and presentation purposes.
-
-## Overview
-
-A lightweight, static frontend built around a curated season dataset. The interface is modelled on Swiss teletext / Totomat aesthetics of the era.
-
-Coverage includes standings, match results, cross-tables, goal scorers, squad profiles, a season timeline, and selected match details with goal chronologies.
-
-## Beta limitations
-
-- match lineups are reconstructed from secondary sources and not yet primary-verified
-- player biography data is incomplete for some squad members
-- historical metadata may be corrected or expanded over time
-- the data structure is functional but not yet a formal archival schema
-
-## Data quality
-
-This project is an **editorial beta dataset**, not a definitive scholarly edition. Corrections have been applied to club and player naming, standings logic, final-round point calculation, and selected squad roles. Some historical details remain unresolved pending primary source verification.
-
-## Tech
-
-- `index.html` — page structure
-- `app.js` — client-side rendering and interaction
-- `data.js` — season dataset
+Static prototype.
 
 ## License
 
-Not yet specified.
+No license specified yet.
