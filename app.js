@@ -16,11 +16,70 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 
-// ---------- boot hide ----------
-setTimeout(() => {
-  const b = document.getElementById('boot');
-  if (b) b.style.display = 'none';
-}, 4500);
+// ---------- helpers ----------
+function makeInteractive(el, handler, label, opts = {}) {
+  el.tabIndex = 0;
+  el.setAttribute('role', 'button');
+  if (label) el.setAttribute('aria-label', label);
+  if (opts.hasPopup) el.setAttribute('aria-haspopup', 'dialog');
+
+  el.addEventListener('click', handler);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handler();
+    }
+  });
+}
+
+function fmtRecord(r) {
+  if (!r) return '—';
+  const pts = r.pts != null ? ` · ${r.pts} P` : '';
+  return `${r.p} SP · ${r.w}S ${r.d}U ${r.l}N · ${r.gf}:${r.ga}${pts}`;
+}
+
+function formatLineupStatus(status) {
+  if (!status) return '';
+  const map = {
+    reconstructed: 'AUFSTELLUNG REKONSTRUIERT'
+  };
+  return map[status] || String(status).toUpperCase();
+}
+
+// ---------- boot ----------
+const boot = document.getElementById('boot');
+const BOOT_KEY = 'siehe1989.boot.dismissed.v3';
+let bootHideTimer = null;
+
+function hideBoot(persist = true) {
+  if (!boot || boot.dataset.hidden === '1') return;
+  boot.dataset.hidden = '1';
+  boot.classList.add('hidden');
+  if (persist) {
+    try { localStorage.setItem(BOOT_KEY, '1'); } catch (e) {}
+  }
+  window.clearTimeout(bootHideTimer);
+  window.setTimeout(() => {
+    boot.style.display = 'none';
+  }, 220);
+}
+
+if (boot) {
+  let bootDismissed = false;
+  try {
+    bootDismissed = localStorage.getItem(BOOT_KEY) === '1';
+  } catch (e) {}
+
+  if (bootDismissed) {
+    boot.style.display = 'none';
+    boot.dataset.hidden = '1';
+  } else {
+    bootHideTimer = window.setTimeout(() => hideBoot(true), 4500);
+    ['click', 'touchstart', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, () => hideBoot(true), { once: true, passive: true });
+    });
+  }
+}
 
 // ---------- navigation ----------
 const PAGE_BY_NUM = {};
@@ -46,7 +105,7 @@ function goTo(pageId) {
   }
 
   try {
-    localStorage.setItem('siehe1989.page.v2', pageId);
+    localStorage.setItem('siehe1989.page.v3', pageId);
   } catch (e) {}
 }
 
@@ -77,7 +136,8 @@ pageInput.addEventListener('focus', () => pageInput.select());
 
 // keyboard shortcuts
 document.addEventListener('keydown', e => {
-  if (e.target === pageInput) return;
+  if (e.target && e.target.matches('input, textarea, select, [contenteditable="true"]')) return;
+
   const map = {
     '1': 'ticker',
     '2': 'timeline',
@@ -87,7 +147,8 @@ document.addEventListener('keydown', e => {
     '6': 'matchesf',
     '7': 'scorers',
     '8': 'squad',
-    '9': 'portrait'
+    '9': 'portrait',
+    '0': 'method'
   };
   if (map[e.key]) goTo(map[e.key]);
   if (e.key === 'Escape') closeModal();
@@ -95,7 +156,7 @@ document.addEventListener('keydown', e => {
 
 // restore last page, else default to standings
 try {
-  const last = localStorage.getItem('siehe1989.page.v2');
+  const last = localStorage.getItem('siehe1989.page.v3') || localStorage.getItem('siehe1989.page.v2');
   if (last && document.getElementById(last)) {
     goTo(last);
   } else {
@@ -108,7 +169,7 @@ try {
 // ============================================================
 // STANDINGS
 // ============================================================
-function buildTable(data, containerId, showNote) {
+function buildTable(data, containerId, showNote, targetPage) {
   const el = document.getElementById(containerId);
   el.innerHTML = '';
 
@@ -135,13 +196,19 @@ function buildTable(data, containerId, showNote) {
       `<div class="col-pts">${row.pts}</div>` +
       (showNote ? `<div class="col-note">${row.note || ''}</div>` : '');
 
-    div.addEventListener('click', () => filterByClub(row.club));
+    makeInteractive(
+      div,
+      () => filterByClub(row.club, targetPage),
+      `Spiele von ${row.club} filtern`,
+      { hasPopup: false }
+    );
+
     el.appendChild(div);
   });
 }
 
-buildTable(D.QP_STANDINGS, 'qp-table', false);
-buildTable(D.FG_STANDINGS, 'fg-table', true);
+buildTable(D.QP_STANDINGS, 'qp-table', false, 'matchesq');
+buildTable(D.FG_STANDINGS, 'fg-table', true, 'matchesf');
 
 // ============================================================
 // CROSSTABLE
@@ -194,7 +261,12 @@ function renderMatches(data, containerId, filterClub) {
         `<div class="m-goals">${m.g}</div>`;
 
       if (hasDetail) {
-        div.addEventListener('click', () => openMatch(detailKey));
+        makeInteractive(
+          div,
+          () => openMatch(detailKey),
+          `Matchdetail öffnen: ${m.h} ${m.s} ${m.a}`,
+          { hasPopup: true }
+        );
       }
 
       el.appendChild(div);
@@ -222,7 +294,7 @@ function buildFilterBar(containerId, filterClub) {
 
 let currentFilter = '';
 
-function filterByClub(club) {
+function filterByClub(club, targetPage = 'matchesq') {
   const shortMap = {
     'FC Luzern': 'Luzern',
     'Grasshopper Club Zürich': 'Grasshopper',
@@ -249,7 +321,7 @@ function filterByClub(club) {
   renderMatches(D.MATCHES_FG, 'mf-content', short);
   buildFilterBar('mq-filter-bar', short);
   buildFilterBar('mf-filter-bar', short);
-  goTo('matchesq');
+  goTo(targetPage);
 }
 
 window.clearFilter = function () {
@@ -273,6 +345,12 @@ function buildScorers(data, containerId, showQpFg) {
 
   data.forEach(s => {
     const div = document.createElement('div');
+    const bioKey =
+      D.PLAYER_BIO[s.name.replace(/\s+\(.*\)$/, '')] ||
+      D.PLAYER_BIO[s.name]
+        ? s.name
+        : null;
+
     div.className = 'sc-row';
     div.innerHTML =
       `<div class="sc-rank">${s.r}</div>` +
@@ -283,8 +361,13 @@ function buildScorers(data, containerId, showQpFg) {
       `<div class="sc-tot">${s.tot}</div>` +
       `<div class="sc-club ${s.luzern ? 'sc-luzern' : ''}">${s.club}</div>`;
 
-    if (D.PLAYER_BIO[s.name.replace(/\s+\(.*\)$/, '')] || D.PLAYER_BIO[s.name]) {
-      div.addEventListener('click', () => openPlayer(s.name));
+    if (bioKey) {
+      makeInteractive(
+        div,
+        () => openPlayer(s.name),
+        `Spielerprofil öffnen: ${s.name}`,
+        { hasPopup: true }
+      );
     }
 
     el.appendChild(div);
@@ -307,7 +390,14 @@ D.SQUAD.forEach(p => {
     `<div class="sq-apps">${p.apps}</div>` +
     `<div class="sq-goals" style="color:${p.goals > 0 ? '#ffff00' : '#555'}">${p.goals > 0 ? p.goals : '─'}</div>` +
     `<div class="sq-note">${p.note}</div>`;
-  div.addEventListener('click', () => openPlayer(p.name));
+
+  makeInteractive(
+    div,
+    () => openPlayer(p.name),
+    `Spielerprofil öffnen: ${p.name}`,
+    { hasPopup: true }
+  );
+
   sqEl.appendChild(div);
 });
 
@@ -420,27 +510,115 @@ D.SQUAD.forEach(p => {
       `<div class="hero-q">« ${hero.q} »</div>`;
 
     const biokey = Object.keys(D.PLAYER_BIO).find(k => k.toUpperCase().includes(hero.n));
-    if (biokey) c.addEventListener('click', () => openPlayer(biokey));
+    if (biokey) {
+      makeInteractive(
+        c,
+        () => openPlayer(biokey),
+        `Spielerprofil öffnen: ${biokey}`,
+        { hasPopup: true }
+      );
+    }
 
     h.appendChild(c);
   });
 })();
 
 // ============================================================
+// METHOD / DATA STATUS
+// ============================================================
+(function initMethod() {
+  const el = document.getElementById('method-content');
+  if (!el) return;
+
+  const M = D.SEASON_META || {};
+  const N = D.DATA_NOTES || {};
+  const S = D.SOURCES || {};
+  const corrections = Array.isArray(N.corrections_applied) ? N.corrections_applied : [];
+  const unresolved = Array.isArray(N.unresolved) ? N.unresolved : [];
+
+  el.innerHTML =
+    `<div class="method-card">` +
+      `<div class="method-title">PROJEKTSTATUS</div>` +
+      `<div class="method-meta">` +
+        `<div class="k">SAISON</div><div class="v">${M.season || '—'}</div>` +
+        `<div class="k">WETTBEWERB</div><div class="v">${M.competition || '—'}</div>` +
+        `<div class="k">FORMAT</div><div class="v">${M.format || '—'}</div>` +
+        `<div class="k">MEISTER</div><div class="v">${M.champion || '—'}</div>` +
+        `<div class="k">TITELMATCH</div><div class="v">${M.title_match || '—'}</div>` +
+        `<div class="k">GESAMTBILANZ</div><div class="v">${fmtRecord(M.total_record)}</div>` +
+      `</div>` +
+    `</div>` +
+
+    `<div class="method-card">` +
+      `<div class="method-title">DATENHINWEISE</div>` +
+      `<div class="method-note">` +
+        `Diese Seite ist eine statische Präsentationsschicht. Der Datenstand enthält bereits Korrekturhinweise und offene Punkte, aber keine vollständige record-level Provenienz je Eintrag.` +
+      `</div>` +
+      `<div class="method-note" style="margin-top:8px">` +
+        `Quellstatus: ${N.sanity_checked ? 'Sanity check durchgeführt' : 'kein Sanity-Check vermerkt'} · ${N.repo_compatible ? 'Repo-kompatible Datenstruktur' : 'ohne Repo-Hinweis'}` +
+      `</div>` +
+    `</div>` +
+
+    `<div class="method-card">` +
+      `<div class="method-title">KORREKTUREN</div>` +
+      `<ul class="method-list">` +
+        corrections.map(item => `<li>${item}</li>`).join('') +
+      `</ul>` +
+    `</div>` +
+
+    `<div class="method-card">` +
+      `<div class="method-title">OFFENE PUNKTE</div>` +
+      `<ul class="method-list">` +
+        unresolved.map(item => `<li>${item}</li>`).join('') +
+      `</ul>` +
+    `</div>` +
+
+    `<div class="method-card">` +
+      `<div class="method-title">BEDIENUNG</div>` +
+      `<ul class="method-list">` +
+        `<li>Seitenwahl über P-Feld oben rechts oder über die Zifferntasten 1–9; 0 öffnet diese Methodenseite.</li>` +
+        `<li>Tabellenzeilen filtern beide Spielpläne; Klick auf Qualifikations- und Finalrundentabelle führt in den jeweiligen Spielblock.</li>` +
+        `<li>Spieler- und Matchkarten sind per Enter oder Leertaste aktivierbar; Escape schließt geöffnete Dialoge.</li>` +
+      `</ul>` +
+    `</div>` +
+
+    `<div class="method-card">` +
+      `<div class="method-title">QUELLEN / REPO</div>` +
+      `<div class="method-note">` +
+        (S.repo ? `Repository: <a class="method-link" href="${S.repo}" target="_blank" rel="noopener noreferrer">${S.repo}</a><br>` : '') +
+        `${S.note || ''}` +
+      `</div>` +
+    `</div>`;
+})();
+
+// ============================================================
 // MODAL
 // ============================================================
 const modal = document.getElementById('modal');
+const modalContent = document.getElementById('modalContent');
 const modalTitle = document.getElementById('modalTitle');
 const modalBody = document.getElementById('modalBody');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+let lastFocusedElement = null;
 
 function openModal(title, html) {
+  lastFocusedElement = document.activeElement;
   modalTitle.textContent = title;
   modalBody.innerHTML = html;
   modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  window.requestAnimationFrame(() => {
+    if (modalCloseBtn) modalCloseBtn.focus();
+    else if (modalContent) modalContent.focus();
+  });
 }
 
 window.closeModal = function () {
   modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+    window.setTimeout(() => lastFocusedElement.focus(), 0);
+  }
 };
 
 modal.addEventListener('click', e => {
@@ -483,6 +661,10 @@ function openMatch(key) {
     `</li>`
   ).join('');
 
+  const statusHtml = m.lineup_status
+    ? `<div class="md-status">QUELLENSTATUS · ${formatLineupStatus(m.lineup_status)}</div>`
+    : '';
+
   const html =
     (m.note ? `<div style="background:var(--red);color:#fff;padding:1px 8px;letter-spacing:2px;text-align:center;font-size:15px">★ ${m.note} ★</div>` : '') +
     `<div class="md-score-line">` +
@@ -496,6 +678,7 @@ function openMatch(key) {
       `<span><b>ZUSCHAUER</b> ${m.attendance}</span>` +
       `<span><b>SR</b> ${m.ref}</span>` +
     `</div>` +
+    statusHtml +
     `<div style="color:var(--cyan);font-size:14px;letter-spacing:2px;margin-top:10px">TORCHRONIK 0' — 90'</div>` +
     `<div class="md-timeline"><div class="md-tl-axis">${axisHtml}${goalsHtml}</div></div>` +
     `<div style="display:flex;gap:16px;font-size:12px;color:#888;margin-top:28px;margin-bottom:10px">` +
@@ -539,13 +722,6 @@ function openPlayer(nameInput) {
   }
 
   const sq = D.SQUAD.find(p => p.name === key) || D.SQUAD.find(p => p.name === nameInput) || { apps: 0, goals: 0, pos: '—' };
-
-  const spark = [];
-  for (let i = 0; i < 36; i++) {
-    spark.push(Math.random() * 0.6 + (i < sq.apps ? 0.4 : 0));
-  }
-  const sparkHtml = spark.map(v => `<div class="pb-spark-bar" style="height:${Math.round(v * 100)}%"></div>`).join('');
-
   const birth = bio.birth || '—';
   const from = bio.from || '—';
   const pos = bio.pos || sq.pos || '—';
@@ -553,9 +729,8 @@ function openPlayer(nameInput) {
   const profile = bio.profile || 'Keine ausführliche Biografie in dieser Ausgabe verfügbar.';
 
   const html =
-    `<div class="pb-shirt">${sq.apps ? '#' + (['1','2','3','4','5','6','7','8','9','10','11'][Math.floor(Math.random() * 11)]) : ''}</div>` +
     `<div style="color:var(--yellow);font-size:22px;letter-spacing:2px;padding-top:2px">${key.toUpperCase()}</div>` +
-    `<div style="color:var(--cyan);font-size:14px;letter-spacing:1px;margin-bottom:2px">${pos} · FC LUZERN</div>` +
+    `<div style="color:var(--cyan);font-size:14px;letter-spacing:1px;margin-bottom:8px">${pos} · FC LUZERN</div>` +
     `<div class="pb-grid">` +
       `<div class="k">GEBOREN</div><div class="v">${birth}</div>` +
       `<div class="k">HERKUNFT</div><div class="v">${from}</div>` +
@@ -564,9 +739,7 @@ function openPlayer(nameInput) {
       `<div class="k">SPIELE 88/89</div><div class="v" style="color:var(--cyan)">${sq.apps} / 36</div>` +
       `<div class="k">TORE 88/89</div><div class="v" style="color:var(--yellow)">${sq.goals}</div>` +
     `</div>` +
-    `<div class="pb-profile">${profile}</div>` +
-    `<div style="color:var(--dim2);font-size:12px;letter-spacing:2px;margin-top:12px">SAISON-EINSATZMUSTER · 36 SPIELTAGE</div>` +
-    `<div class="pb-sparkline">${sparkHtml}</div>`;
+    `<div class="pb-profile">${profile}</div>`;
 
   openModal(key.toUpperCase(), html);
 }
