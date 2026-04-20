@@ -1,6 +1,6 @@
 // Season data for Siehe 1989
-// Nationalliga A 1988/89 
-// Corrected version: Beta 1.1
+// NLA 1988/89 — FC Luzern's only championship
+// Repo-compatible version for sanjayls/siehe-1989.ch
 
 const QP_STANDINGS = [
   { r:1,  club:'FC Luzern',               p:22, w:10, d:8,  l:4,  gf:27, ga:25, pts:28, champion:true },
@@ -18,7 +18,6 @@ const QP_STANDINGS = [
   { r:12, club:'FC Lugano',               p:22, w:3,  d:10, l:9,  gf:23, ga:46, pts:16, dim:true },
 ];
 
-// Finalrunde stats are round-only; pts are cumulative after bonus/halving.
 const FG_STANDINGS = [
   { r:1,  club:'FC Luzern',               p:14, w:7, d:5, l:2, gf:17, ga:11, pts:33, frPts:19, bonus:14, note:'MEISTER', champion:true },
   { r:'─', sep:true },
@@ -350,66 +349,64 @@ const SCORERS = [
 ];
 
 const SCORERS_FG = [
-  { r:1, name:'Nadig Peter',             tot:9, club:'FC Luzern', luzern:true },
-  { r:1, name:'Közle Peter (GER)',       tot:9, club:'BSC Young Boys' },
-  { r:3, name:'Baljic Mirsad (YUG)',     tot:7, club:'FC Sion' },
-  { r:3, name:'Eriksen John (DEN)',      tot:7, club:'Servette Genève' },
-  { r:3, name:'Sutter Beat',             tot:7, club:'Neuchâtel Xamax' },
-  { r:3, name:'Zuffi Dario',             tot:7, club:'BSC Young Boys' },
-  { r:7, name:'Rummenigge K.-H. (GER)',  tot:6, club:'Servette Genève' },
-  { r:7, name:'Türkyilmaz Kubilay',      tot:6, club:'AC Bellinzona' },
-  { r:7, name:'Rufer Wynton (NZL)',      tot:6, club:'Grasshopper Club' },
+  { r:1, name:'Nadig Peter',            tot:9, club:'FC Luzern', luzern:true },
+  { r:1, name:'Közle Peter (GER)',      tot:9, club:'BSC Young Boys' },
+  { r:3, name:'Baljic Mirsad (YUG)',    tot:7, club:'FC Sion' },
+  { r:3, name:'Eriksen John (DEN)',     tot:7, club:'Servette Genève' },
+  { r:3, name:'Sutter Beat',            tot:7, club:'Neuchâtel Xamax' },
+  { r:3, name:'Zuffi Dario',            tot:7, club:'BSC Young Boys' },
+  { r:7, name:'Rummenigge K.-H. (GER)', tot:6, club:'Servette Genève' },
+  { r:7, name:'Türkyilmaz Kubilay',     tot:6, club:'AC Bellinzona' },
+  { r:7, name:'Rufer Wynton (NZL)',     tot:6, club:'Grasshopper Club' },
 ];
 
 const SQUAD = [
-  { name:'Roger Tschudin',            apps:29, goals:0,  pos:'GK', note:'Stammtorhüter der Meistermannschaft' },
-  { name:'Martin Müller',             apps:36, goals:3,  pos:'MF', note:'Kopfballtor gegen GC am 27.05.1989' },
-  { name:'Roger Wehrli',              apps:36, goals:2,  pos:'DF', note:'Captain der Meistermannschaft' },
-  { name:'Herbert Baumann',           apps:34, goals:0,  pos:'DF', note:'Linker Verteidiger' },
-  { name:'Urs Birrer',                apps:32, goals:1,  pos:'DF', note:'' },
-  { name:'Hanspeter Burri',           apps:32, goals:3,  pos:'DF', note:'' },
-  { name:'Jürgen Mohr (GER)',         apps:30, goals:6,  pos:'MF', note:'Meistertor gegen Servette' },
-  { name:'Peter Nadig',               apps:30, goals:15, pos:'MF/ST', note:'Topscorer des FCL' },
-  { name:'Urs Schönenberger',         apps:30, goals:2,  pos:'DF/MF', note:'' },
-  { name:'Sigurdur Gretarsson (IS)',  apps:29, goals:8,  pos:'ST', note:'Isländischer Torjäger' },
-  { name:'Hanspeter Kaufmann',        apps:29, goals:0,  pos:'DF/MF', note:'' },
-  { name:'Paul Friberg',              apps:22, goals:3,  pos:'MF', note:'' },
-  { name:'Stefan Marini',             apps:21, goals:0,  pos:'DF', note:'' },
-  { name:'Marco Bernaschina',         apps:19, goals:1,  pos:'MF', note:'' },
+  { name:'Roger Tschudin',            apps:29, goals:0,  pos:'GK',    note:'Stammtorhüter der Meistermannschaft' },
+  { name:'Martin Müller',             apps:36, goals:3,  pos:'MF',    note:'Treffer gegen GC am 27.05.1989' },
+  { name:'Roger Wehrli',              apps:36, goals:2,  pos:'DF',    note:'Captain der Meistermannschaft' },
+  { name:'Herbert Baumann',           apps:34, goals:0,  pos:'DF',    note:'Linker Verteidiger' },
+  { name:'Urs Birrer',                apps:32, goals:1,  pos:'DF',    note:'' },
+  { name:'Hanspeter Burri',           apps:32, goals:3,  pos:'DF/MF', note:'' },
+  { name:'Jürgen Mohr (GER)',         apps:30, goals:6,  pos:'MF',    note:'Meistertor gegen Servette' },
+  { name:'Peter Nadig',               apps:30, goals:15, pos:'MF/ST', note:'Bester Luzerner Torschütze' },
+  { name:'Urs Schönenberger',         apps:30, goals:2,  pos:'MF',    note:'' },
+  { name:'Sigurdur Gretarsson (IS)',  apps:29, goals:8,  pos:'ST',    note:'' },
+  { name:'Hanspeter Kaufmann',        apps:29, goals:0,  pos:'MF/DF', note:'' },
+  { name:'Paul Friberg',              apps:22, goals:3,  pos:'MF',    note:'' },
+  { name:'Stefan Marini',             apps:21, goals:0,  pos:'DF',    note:'' },
+  { name:'Marco Bernaschina',         apps:19, goals:1,  pos:'MF',    note:'' },
   { name:'Heinz Moser',               apps:15, goals:0,  pos:'DF/MF', note:'' },
-  { name:'Giorgio Mellacina',         apps:6,  goals:0,  pos:'GK', note:'Ersatztorhüter' },
-  { name:'Peter Gmür',                apps:9,  goals:0,  pos:'MF', note:'' },
-  { name:'Manfred Joller',            apps:2,  goals:0,  pos:'DF', note:'' },
-  { name:'Bruce Murray (USA)',        apps:2,  goals:0,  pos:'ST', note:'US-Nationalspieler' },
-  { name:'Alain Béguin',              apps:1,  goals:0,  pos:'ST', note:'' },
-  { name:'Marcel Kälin',              apps:1,  goals:0,  pos:'MF', note:'' },
-  { name:'Marcel Peter',              apps:1,  goals:0,  pos:'MF', note:'' },
+  { name:'Peter Gmür',                apps:9,  goals:0,  pos:'MF/DF', note:'Positionsangaben je nach Quelle uneinheitlich' },
+  { name:'Giorgio Mellacina',         apps:6,  goals:0,  pos:'GK',    note:'Verletzte sich in der Qualifikationsrunde' },
+  { name:'Manfred Joller',            apps:2,  goals:0,  pos:'DF',    note:'' },
+  { name:'Bruce Murray (USA)',        apps:2,  goals:0,  pos:'ST',    note:'' },
+  { name:'Alain Béguin',              apps:1,  goals:0,  pos:'ST',    note:'' },
+  { name:'Marcel Kälin',              apps:1,  goals:0,  pos:'MF',    note:'' },
+  { name:'Marcel Peter',              apps:1,  goals:0,  pos:'MF',    note:'' },
 ];
-
-// ===== NEW DATA =====
 
 const TICKER = [
   'MEISTER FC LUZERN — FRIEDEL RAUSCH FÜHRT DIE INNERSCHWEIZER AUF DEN THRON',
   'NADIG 9 TORE IN DER FINALRUNDE — TOPSCORER GEMEINSAM MIT KÖZLE (YB)',
-  'TSCHUDIN IM TOR — FCL MIT DRITTBESTEM GEGENTORVERHÄLTNIS DER LIGA (36 GT)',
+  'FCL MIT 36 GEGENTOREN — DRITTBESTER DEFENSIVWERT DER LIGA',
   'FINALRUNDE: WETTINGEN 1-0 LUZERN — MEISTERSCHAFT BEREITS ENTSCHIEDEN',
   'RUMMENIGGE LIGA-TORSCHÜTZENKÖNIG MIT 24 TOREN FÜR SERVETTE',
-  'GC ZWEIGETEILT — ZWEITER IN QP UND FINALRUNDE, KEIN TITEL',
-  'ALLMEND AUSVERKAUFT — DIE INNERSCHWEIZ FEIERT IHRE HELDEN',
-  'MEISTERKADER — BREITE, DISZIPLIN, 1 TRAUM',
+  'GC ZWEIMAL ZWEITER — IN QP UND FINALRUNDE, ABER OHNE TITEL',
+  'ALLMEND ALS TITELBÜHNE — DER ENTSCHEIDENDE 1:0-SIEG GEGEN SERVETTE AM 10.06.1989',
+  'MEISTERTEAM 1988/89 — KOLLEKTIV, DISZIPLIN, UMSCHALTSPIEL',
 ];
 
 const TIMELINE = [
   { d:'23.07.1988', t:'AUFTAKT', c:'AUF DER ALLMEND', desc:'FC Luzern 3-2 St.Gallen. Gretarsson, Burri und Mohr treffen zum Saisonstart.' },
-  { d:'30.07.1988', t:'STATEMENT', c:'FCL 2-0 GC', desc:'Früher Sieg gegen den Favoriten Grasshopper — Luzern meldet Titelambitionen an.' },
+  { d:'30.07.1988', t:'STATEMENT', c:'FCL 2-0 GC', desc:'Früher Sieg gegen Grasshopper — Luzern meldet Titelambitionen an.' },
   { d:'06.08.1988', t:'AUSWÄRTSCOUP', c:'YB 0-2 LUZERN', desc:'Nadig und Friberg bringen die Punkte aus dem Wankdorf mit.' },
   { d:'11.12.1988', t:'QP ABGESCHLOSSEN', c:'TABELLENFÜHRER', desc:'FCL beendet die Qualifikationsphase auf Rang 1 mit 28 Punkten vor GC (27).' },
   { d:'18.03.1989', t:'FINALRUNDE', c:'YB 1-2 LUZERN', desc:'Start der Finalrunde mit Auswärtssieg. Schönenberger und Birrer treffen.' },
-  { d:'06.05.1989', t:'WEICHENSTELLUNG', c:'FCL 1-0 WETTINGEN', desc:'Gretarsson schiesst Luzern zum Sieg gegen den gefährlichsten Verfolger.' },
-  { d:'27.05.1989', t:'KRIMI IM TITELKAMPF', c:'FCL 1-0 GC', desc:'Martin Müller köpft in der 82. Minute. Die Allmend explodiert.' },
-  { d:'31.05.1989', t:'MATCHBALL', c:'XAMAX 0-1 LUZERN', desc:'Nadig trifft in der 79. Minute — Titel zum Greifen nahe.' },
-  { d:'10.06.1989', t:'MEISTERMATCH', c:'FCL 1-0 SERVETTE', desc:'Mohr trifft in der 61. Minute — MEISTER! FC LUZERN ZUM ERSTEN MAL SCHWEIZER MEISTER.' },
-  { d:'14.06.1989', t:'EHRENRUNDE', c:'WETTINGEN 1-0 FCL', desc:'Formsache zum Abschluss — die Meisterfeier in Luzern geht weiter.' },
+  { d:'06.05.1989', t:'WEICHENSTELLUNG', c:'FCL 1-0 WETTINGEN', desc:'Gretarsson erzielt den Siegtreffer gegen den gefährlichsten Verfolger.' },
+  { d:'27.05.1989', t:'TITELKAMPF', c:'FCL 1-0 GC', desc:'Martin Müller trifft in der 82. Minute. Die Allmend kippt zugunsten des FCL.' },
+  { d:'31.05.1989', t:'MATCHBALL', c:'XAMAX 0-1 LUZERN', desc:'Nadig trifft in der 79. Minute — Titel in Griffweite.' },
+  { d:'10.06.1989', t:'MEISTERMATCH', c:'FCL 1-0 SERVETTE', desc:'Mohr trifft in der 61. Minute — FC Luzern wird erstmals Schweizer Meister.' },
+  { d:'14.06.1989', t:'ABSCHLUSS', c:'WETTINGEN 1-0 FCL', desc:'Letzte Runde nach bereits entschiedener Meisterschaft.' },
 ];
 
 const PORTRAIT = {
@@ -423,27 +420,27 @@ const PORTRAIT = {
       { k:'HEIMBILANZ', v:'10S 7U 1N' },
       { k:'HEIMTORE', v:'23 : 10' },
     ],
-    desc: 'Die Allmend ist seit 1934 die Heimstätte des FC Luzern. In der Meistersaison 1988/89 verlor der FCL hier nur ein einziges Ligaspiel — das 1:3 gegen BSC Young Boys am 12. Oktober 1988.'
+    desc: 'Die Allmend war 1988/89 das Fundament des Meistertitels. Der FCL verlor zuhause nur ein einziges Ligaspiel: das 1:3 gegen Young Boys am 12.10.1988.'
   },
   trainer: {
     name: 'FRIEDEL RAUSCH',
     nation: 'DEUTSCHLAND',
-    born:'21.02.1940, Essen',
+    born: '21.02.1940, Essen',
     facts: [
-      { k:'TRAINIERT FCL', v:'SEIT 1985' },
+      { k:'TRAINER BEIM FCL', v:'SEIT 1985' },
       { k:'VORHER', v:'SCHALKE 04, NÜRNBERG' },
       { k:'SYSTEM', v:'4-4-2 KOMPAKT' },
       { k:'PRINZIP', v:'DEFENSIVE DISZIPLIN' },
     ],
-    desc: 'Der deutsche Coach verwandelte Luzern vom grauen Mittelfeldklub in einen Meister. Kompakte Defensive, schnelles Umschaltspiel, eiserne Disziplin — die Rausch-Schule.'
+    desc: 'Rausch prägte das sportlich erfolgreichste Kapitel der Klubgeschichte. Der Meistertitel 1989 war das Resultat von Struktur, Disziplin und einem klaren Umschaltprofil.'
   },
   heroes: [
-    { n:'PETER NADIG',        r:'OFFENSIVSPIELER', st:'15 TORE · 9 IN DER FINALRUNDE', q:'Der Mann für die entscheidenden Momente.' },
-    { n:'ROGER TSCHUDIN',     r:'TORHÜTER',        st:'29 SPIELE · 36 GEGENTORE',      q:'Die Nummer 1 im Meisterjahr.' },
-    { n:'SIGURDUR GRETARSSON',r:'STÜRMER',         st:'29 SPIELE · 8 TORE · ISLAND',    q:'Nordische Kaltschnäuzigkeit.' },
-    { n:'JÜRGEN MOHR',        r:'MITTELFELD',      st:'30 SPIELE · 6 TORE · DEUTSCHLAND', q:'Meistertor in der 61. Minute.' },
-    { n:'MARTIN MÜLLER',      r:'SPIELMACHER',     st:'36 SPIELE · 3 TORE',             q:'Das Kopfballtor gegen GC — 27.05.1989.' },
-    { n:'ROGER WEHRLI',       r:'LIBERO',          st:'36 SPIELE · 2 TORE',             q:'Eine Mauer und der Captain der Meistermannschaft.' },
+    { n:'PETER NADIG',         r:'OFFENSIVSPIELER', st:'15 TORE · 9 IN DER FINALRUNDE', q:'Der produktivste Luzerner Scorer der Meistersaison.' },
+    { n:'ROGER TSCHUDIN',      r:'TORHÜTER',        st:'STAMMGOALIE IM MEISTERJAHR',    q:'Wurde nach der Verletzung Mellacinas zur Nummer 1.' },
+    { n:'SIGURDUR GRETARSSON', r:'STÜRMER',         st:'29 SPIELE · 8 TORE',            q:'Direkter, robuster und wichtiger Zielspieler.' },
+    { n:'JÜRGEN MOHR',         r:'MITTELFELD',      st:'MEISTERTOR AM 10.06.1989',      q:'Der Regisseur im Zentrum.' },
+    { n:'MARTIN MÜLLER',       r:'MITTELFELD',      st:'36 SPIELE · 3 TORE',            q:'Kopfball zum 1:0 gegen GC am 27.05.1989.' },
+    { n:'ROGER WEHRLI',        r:'ABWEHR / LIBERO', st:'CAPTAIN DER MEISTERMANNSCHAFT', q:'Defensiver Organisator und Führungsfigur.' },
   ]
 };
 
@@ -452,79 +449,61 @@ const PLAYER_BIO = {
     birth:'20.02.1965',
     from:'FC BASEL',
     pos:'OFFENSIVES MITTELFELD / STURM',
-    height:'180',
-    profile:'Der offensiv prägende Spieler der Meistersaison. 15 Ligatore, davon 9 in der Finalrunde — darunter der entscheidende Treffer in Xamax am 31.05.1989.'
+    profile:'15 Ligatore, davon 9 in der Finalrunde. Entscheidender Spieler in der Schlussphase der Saison, unter anderem mit dem Siegtreffer bei Xamax am 31.05.1989.'
   },
-  'Sigurdur Gretarsson (IS)': {
-    birth:'18.09.1962',
-    from:'BVB STOCKHOLM',
-    pos:'STÜRMER',
-    height:'183',
-    profile:'Der isländische Angreifer des FCL. Schnell, kopfballstark und in grossen Spielen präsent — unter anderem mit dem Siegtreffer gegen Wettingen in der Finalrunde.'
-  },
-  'Jürgen Mohr (GER)': {
-    birth:'18.08.1958',
-    from:'1. FC SAARBRÜCKEN',
-    pos:'MITTELFELD',
-    height:'187',
-    profile:'Strateg im Luzerner Zentrum. Schoss am 10.06.1989 im Meisterspiel gegen Servette das entscheidende 1:0.'
+  'Nadig Peter': {
+    birth:'20.02.1965',
+    from:'FC BASEL',
+    pos:'OFFENSIVES MITTELFELD / STURM',
+    profile:'15 Ligatore, davon 9 in der Finalrunde. Entscheidender Spieler in der Schlussphase der Saison, unter anderem mit dem Siegtreffer bei Xamax am 31.05.1989.'
   },
   'Roger Tschudin': {
     birth:'21.07.1966',
     from:'FCL EIGENGEWÄCHS',
     pos:'TORHÜTER',
-    height:'190',
-    profile:'Die Nummer 1 der Meistermannschaft. Stand 1988/89 im Luzerner Tor und war zentral für das drittbeste Gegentorverhältnis der Liga.'
+    profile:'Stammtorhüter der Meistermannschaft. Wurde nach der Verletzung Giorgio Mellacinas zur Nummer 1.'
   },
   'Herbert Baumann': {
     birth:'16.09.1964',
     from:'FC LITTAU / FC EMMENBRÜCKE',
     pos:'LINKER VERTEIDIGER',
-    height:'170',
-    profile:'Defensivspieler der Meistermannschaft. Kein Torhüter, sondern linker Verteidiger mit hoher taktischer Disziplin.'
+    profile:'Nicht Torhüter, sondern linker Verteidiger. Teil der defensiven Meisterachse.'
+  },
+  'Jürgen Mohr (GER)': {
+    birth:'18.08.1958',
+    pos:'DEFENSIVES / ZENTRALES MITTELFELD',
+    profile:'Spielmacher und strategischer Taktgeber. Traf im Meisterspiel gegen Servette zum historischen 1:0.'
   },
   'Martin Müller': {
     birth:'28.01.1957',
-    from:'GRASSHOPPER CLUB',
     pos:'MITTELFELD',
-    height:'178',
-    profile:'Erfahrener Spielmacher des FCL. Köpfte am 27.05.1989 gegen GC den enorm wichtigen 1:0-Siegtreffer.'
+    profile:'Erfahrener Führungsspieler. Traf am 27.05.1989 gegen GC zum vielleicht wichtigsten Luzerner Ligator der Saison.'
   },
   'Roger Wehrli': {
     birth:'18.03.1956',
-    from:'GRASSHOPPER CLUB',
-    pos:'LIBERO / VERTEIDIGER',
-    height:'176',
-    profile:'Captain der Meistermannschaft und defensiver Organisator. Brachte internationale Routine und Führungsstärke ins Team.'
+    pos:'ABWEHR / LIBERO',
+    profile:'Captain der Meistermannschaft und defensive Führungsfigur mit internationaler Erfahrung.'
+  },
+  'Sigurdur Gretarsson (IS)': {
+    pos:'STÜRMER',
+    profile:'Physisch starker Zielspieler mit 8 Saisontoren. Traf unter anderem gegen GC und Wettingen in Schlüsselspielen.'
+  },
+  'Gretarsson S.': {
+    pos:'STÜRMER',
+    profile:'Physisch starker Zielspieler mit 8 Saisontoren. Traf unter anderem gegen GC und Wettingen in Schlüsselspielen.'
   },
   'Hanspeter Burri': {
-    birth:'11.05.1961',
-    from:'FCL EIGENGEWÄCHS',
     pos:'ABWEHR / MITTELFELD',
-    height:'177',
-    profile:'Vielseitiger Spieler mit grossem Laufpensum. Erzielte unter anderem den Führungstreffer am ersten Spieltag gegen St.Gallen.'
-  },
-  'Paul Friberg': {
-    birth:'13.04.1963',
-    from:'AUFSTEIGER',
-    pos:'MITTELFELD',
-    height:'179',
-    profile:'Joker und Allrounder. Traf unter anderem beim wichtigen 2:0-Auswärtssieg in Bern gegen YB.'
-  },
-  'Urs Birrer': {
-    birth:'15.01.1961',
-    from:'LUGANO',
-    pos:'VERTEIDIGER',
-    height:'178',
-    profile:'Solider Defensivspieler mit dem 2:1-Siegtreffer in der Finalrunde gegen YB.'
+    profile:'Vielseitiger Luzerner Eigengewächsspieler mit hoher taktischer Disziplin.'
   },
   'Urs Schönenberger': {
-    birth:'10.02.1960',
-    from:'ST.GALLEN',
     pos:'MITTELFELD',
-    height:'176',
-    profile:'Zuverlässiger und arbeitsstarker Spieler im Rausch-System. Traf unter anderem in Bern zum 1:1 gegen YB in der Finalrunde.'
+    profile:'Zuverlässiger und arbeitsstarker Spieler im Rausch-System.'
   },
+  'Peter Gmür': {
+    pos:'MF/DF',
+    profile:'Positionsangaben divergieren je nach Quelle. Für die Datenseite daher bewusst als Hybridrolle markiert.'
+  }
 };
 
 const MATCH_DETAILS = {
@@ -535,6 +514,7 @@ const MATCH_DETAILS = {
     ref:'ROLAND BIANCHI (MESSEN)',
     home:'FC LUZERN',
     away:'FC ST.GALLEN',
+    lineup_status:'reconstructed',
     timeline:[
       { m:'53', team:'a', ev:'⚽', p:'Braschler', note:'Kopfball' },
       { m:'61', team:'h', ev:'⚽', p:'Gretarsson' },
@@ -551,6 +531,7 @@ const MATCH_DETAILS = {
     ref:'BRUNO GALLER (KIRCHBERG)',
     home:'FC LUZERN',
     away:'GRASSHOPPER CLUB ZÜRICH',
+    lineup_status:'reconstructed',
     timeline:[
       { m:'5',  team:'h', ev:'⚽', p:'Burri', note:'Kopfball nach Ecke' },
       { m:'81', team:'h', ev:'⚽', p:'Gretarsson' },
@@ -565,6 +546,7 @@ const MATCH_DETAILS = {
     home:'FC LUZERN',
     away:'SERVETTE FC GENÈVE',
     note:'MEISTERMATCH',
+    lineup_status:'reconstructed',
     timeline:[
       { m:'61', team:'h', ev:'⚽', p:'Mohr', note:'DAS MEISTERTOR' },
     ],
@@ -577,6 +559,7 @@ const MATCH_DETAILS = {
     ref:'URS MEIER (WÜRENLOS)',
     home:'FC LUZERN',
     away:'GRASSHOPPER CLUB ZÜRICH',
+    lineup_status:'reconstructed',
     timeline:[
       { m:'82', team:'h', ev:'⚽', p:'M.Müller', note:'Kopfball · Vorlage Mohr' },
     ],
@@ -589,6 +572,7 @@ const MATCH_DETAILS = {
     ref:'KURT RÖTHLISBERGER (SUHR)',
     home:'BSC YOUNG BOYS',
     away:'FC LUZERN',
+    lineup_status:'reconstructed',
     timeline:[
       { m:'12', team:'h', ev:'⚽', p:'Közle' },
       { m:'51', team:'a', ev:'⚽', p:'Schönenberger' },
@@ -596,6 +580,47 @@ const MATCH_DETAILS = {
     ],
     fcl:['Roger Tschudin', 'Wehrli', 'Marini', 'Kaufmann', 'Birrer', 'M.Müller', 'Mohr', 'Burri', 'Schönenberger', 'Gretarsson', 'Nadig']
   },
+};
+
+const SEASON_META = {
+  season: '1988/89',
+  competition: 'Nationalliga A',
+  era: '2-Punkte-System',
+  format: 'Qualifikation (22 Spiele) + Finalrunde (14 Spiele) mit Bonus aus halbierter Qualifikationspunktzahl',
+  champion: 'FC Luzern',
+  title_won_on: '10.06.1989',
+  title_match: 'FC Luzern 1-0 Servette FC Genève',
+  title_goal: 'Jürgen Mohr, 61.',
+  total_record: { p:36, w:17, d:13, l:6, gf:44, ga:36, pts:47 },
+  home_record:  { p:18, w:10, d:7,  l:1, gf:23, ga:10 },
+  away_record:  { p:18, w:7,  d:6,  l:5, gf:21, ga:26 },
+  qp_record:    { p:22, w:10, d:8,  l:4, gf:27, ga:25, pts:28 },
+  fg_record:    { p:14, w:7,  d:5,  l:2, gf:17, ga:11, pts:19, cumulative_pts:33 },
+  luzern_top_scorer: { name:'Peter Nadig', goals:15, final_round_goals:9 }
+};
+
+const DATA_NOTES = {
+  sanity_checked: true,
+  repo_compatible: true,
+  corrections_applied: [
+    'Kücle global zu Közle normalisiert',
+    'Finalrunden-Tabelle um bonus/frPts ergänzt',
+    'falsche Rausch-Übernahme 1988 entfernt',
+    'Herbert Baumann als Verteidiger statt Torhüter geführt',
+    'Roger Tschudin als Stammtorhüter des Meisterjahrs geführt',
+    'PLAYER_BIO-Aliase für Nadig Peter und Gretarsson S. ergänzt',
+    'Ticker, Timeline und Portrait sprachlich und sachlich gestrafft'
+  ],
+  unresolved: [
+    'einzelne vollständige Startformationen pro Spiel sind ohne Primär-Matchblatt nur teilverifiziert',
+    'einige Positionsangaben aus der Ära divergieren zwischen heutigen Datenbanken',
+    'Attendance-Angaben in MATCH_DETAILS wurden nicht flächendeckend neu verifiziert'
+  ]
+};
+
+const SOURCES = {
+  repo: 'https://github.com/sanjayls/siehe-1989.ch',
+  note: 'Current app.js expects flat arrays/objects and consumes window.SIEHE_DATA directly.'
 };
 
 window.SIEHE_DATA = {
@@ -612,5 +637,8 @@ window.SIEHE_DATA = {
   TIMELINE,
   PORTRAIT,
   PLAYER_BIO,
-  MATCH_DETAILS
+  MATCH_DETAILS,
+  SEASON_META,
+  DATA_NOTES,
+  SOURCES
 };
